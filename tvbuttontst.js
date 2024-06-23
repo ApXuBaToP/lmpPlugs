@@ -95,8 +95,10 @@
      var opt = clCodes.indexOf(e.key)+1;
      if (opt > 0 && opt <= tpanel.length-1 && tpanel[opt].firstChild.checkVisibility()) {Lampa.Utils.trigger(tpanel[opt].firstChild, 'hover:enter')}
   }
-  function reBindRight() {
-    Lampa.Controller.enabled().controller.right = function right() {if (Navigator.canmove('right')) Navigator.move('right');else Lampa.Controller.long();};
+  function reBindRight(e) {
+    if (e.name == 'content') {
+       Lampa.Controller.enabled().controller.right = function right() {if (Navigator.canmove('right')) Navigator.move('right');else Lampa.Controller.long();};
+    }
     //Lampa.Controller.listener.destroy('toggle', reBindRight);
   }
 
