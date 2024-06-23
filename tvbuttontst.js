@@ -98,6 +98,7 @@
   function reBindRight(e) {
     if (e.name == 'content') {
        Lampa.Controller.enabled().controller.right = function right() {if (Navigator.canmove('right')) Navigator.move('right');else Lampa.Controller.long();};
+       Lampa.Controller.listener.destroy('toggle', reBindRight);
     }
     //Lampa.Controller.listener.destroy('toggle', reBindRight);
   }
