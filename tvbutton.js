@@ -1,3 +1,7 @@
+(function() {
+  'use strict';
+
+
 function log() {
         console.log.apply(console.log, arguments);
       }
@@ -30,7 +34,7 @@ let htmlx = `<div>
 
 var styles = `
     .tfilter_btn_wr {
-    border: solid, 0.2em;
+    border: solid, 0.1em;
     border-radius: 0.7em;
     flex-basis: 24%;
 }
@@ -55,25 +59,38 @@ var styleSheet = document.createElement("style");
 styleSheet.textContent = styles;
 document.head.appendChild(styleSheet);
 
-wComponents =['lampac','torrents'];
+var wComponents =['lampac','torrents'];
+var clCodes = ["ColorF0Red", "ColorF1Green", "ColorF2Yellow", "ColorF3Blue"];
 
-curComponent='';
+var curComponent='';
+var tfilter = '';
+
 function plugTVkeys(e) {
 	log('TVkeys', e);
-	if(wComponents.includes(e.component) && e.type == 'start') {
+	if(wComponents.includes(e.component) && (e.type == 'start' || e.name == 'content'))  {
 	   tfilter = document.getElementsByClassName("torrent-filter")[0];
+	   tfilter.children[1].on('hover:enter', () => Lampa.Activity.push({'component':'main'}));
 	   wrapEach(tfilter);
-	   curComponent=e.component;
-	   document.addEventListener("keyup", listenTVkeys);}
+	   curComponent = e.component;
+	   document.addEventListener("keyup", listenTVkeys);
+	   Lampa.Controller.enabled().controller.right = function right() {if (Navigator.canmove('right')) Navigator.move('right');else Lampa.Controller.long();};
+
+//      setTimeout(	() =>   
+//	   {Lampa.Controller.enabled().controller.right = function right() {if (Navigator.canmove('right')) Navigator.move('right');else Lampa.Controller.long();}}, 2000
+//	   )
+	   
+	   
+	   
+	}
+
 	if (curComponent != '' && curComponent != e.component) {
-		curComponent = "";
-		document.removeEventListener("keyup", listenTVkeys);}
-		
+		curComponent = '';
+		document.removeEventListener("keyup", listenTVkeys);}		
 }
 
 function wrapEach(tfilter, indx) {
-   toWrap = Array.prototype.slice.call(tfilter.children).slice(1);
-   clrs = ['red', 'green', 'yellow', 'blue'];
+   var toWrap = Array.prototype.slice.call(tfilter.children).slice(1);
+   var clrs = ['red', 'green', 'yellow', 'blue'];
    function wrEach(el, indx) {
       var wrapperx = document.createElement('div');
       wrapperx.classList.add('tfilter_btn_wr');
@@ -84,13 +101,18 @@ function wrapEach(tfilter, indx) {
    toWrap.forEach(wrEach);
 }
 function listenTVkeys(e) {
-   log('TVkeys', "[DBG] key: " + e.key + ", code: " + e.code);
-   let clCodes = ["ColorF0Red", "ColorF1Green", "ColorF2Yellow", "ColorF3Blue"];
-   let tpanel = document.getElementsByClassName("torrent-filter")[0].children;  
-   
-   let opt = clCodes.indexOf(e.key)+1;
-   if (opt > 0 && opt <= tpanel.length-1) {Lampa.Utils.trigger(tpanel[opt].firstChild, 'hover:enter')}
+   //log('TVkeys', "[DBG] key: " + e.key + ", code: " + e.code); 
+   //var tpanel = document.getElementsByClassName("torrent-filter")[0].children;
+   var tpanel = tfilter.children;  
+   var opt = clCodes.indexOf(e.key)+1;
+   if (opt > 0 && opt <= tpanel.length-1 && tpanel[opt].firstChild.checkVisibility()) {Lampa.Utils.trigger(tpanel[opt].firstChild, 'hover:enter')}
 }
 
+function bbeam(e) {log('TVkeys',e);}
 
 Lampa.Listener.follow('activity', plugTVkeys);
+Lampa.Listener.follow('torrents', function(e) {Lampa.Noty.show('torrent! ' + e); log('TVkeys', e);});
+//Lampa.Listener.follow('line', function(e) {Lampa.Noty.show('line! ' + e); log('TVkeys', e);});
+Lampa.Controller.listener.follow('toggle', bbeam);
+
+})();
