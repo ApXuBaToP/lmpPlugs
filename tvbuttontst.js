@@ -43,14 +43,15 @@
       font-size: 1em !important; \n \
       border-radius 0; \n \
   } \n \
-      .torrent-filter { \n \
-      display: -webkit-box; \n \
-      display: -webkit-flex; \n \
-      display: -moz-box; \n \
-      display: -ms-flexbox; \n \
-      display: flex; \n \
-      margin-bottom: 2em; \n \
-      justify-content: space-between; \n \
+    .torrent-filter { \n \  
+    display: grid; \n \
+    grid-template-columns: 1fr 1fr 1fr 1fr; \n \
+    gap: 0px 10px; \n \
+    grid-auto-flow: row; \n \
+    justify-content: space-between; \n \
+    align-content: stretch; \n \
+    justify-items: stretch; \n \
+    align-items: stretch; \n \
   }'
   
   Lampa.Template.add('filter', htmlx);
