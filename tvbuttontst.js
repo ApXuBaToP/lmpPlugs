@@ -31,8 +31,7 @@
      </div> \n \
   </div>'
   
-  var styles = ' \n \
-      .tfilter_btn_wr { \n \
+  var styles = '.tfilter_btn_wr { \n \
       border: solid, 0.1em; \n \
       border-radius: 0.7em; \n \
       flex-basis: 24%; \n \
