@@ -31,27 +31,27 @@
      </div> \n \
   </div>'
   
-  var styles = `
-      .tfilter_btn_wr {
-      border: solid, 0.1em;
-      border-radius: 0.7em;
-      flex-basis: 24%;
-  }
-      .simple-button.simple-button--filter {
-      margin: 0;
-      padding: 1em;
-      font-size: 1em !important;
-      border-radius 0;
-  }
-      .torrent-filter {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -moz-box;
-      display: -ms-flexbox;
-      display: flex;
-      margin-bottom: 2em;
-      justify-content: space-between;
-  }`
+  var styles = ' \n \
+      .tfilter_btn_wr { \n \
+      border: solid, 0.1em; \n \
+      border-radius: 0.7em; \n \
+      flex-basis: 24%; \n \
+  } \n \
+      .simple-button.simple-button--filter { \n \
+      margin: 0; \n \
+      padding: 1em; \n \
+      font-size: 1em !important; \n \
+      border-radius 0; \n \
+  } \n \
+      .torrent-filter { \n \
+      display: -webkit-box; \n \
+      display: -webkit-flex; \n \
+      display: -moz-box; \n \
+      display: -ms-flexbox; \n \
+      display: flex; \n \
+      margin-bottom: 2em; \n \
+      justify-content: space-between; \n \
+  }'
   
   Lampa.Template.add('filter', htmlx);
   var styleSheet = document.createElement("style");
