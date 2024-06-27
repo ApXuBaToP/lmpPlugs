@@ -42,7 +42,7 @@
       font-size: 1em !important; \n \
       border-radius 0; \n \
   } \n \
-    .torrent-filter { \n \  
+    .torrent-filter { \n \
     display: grid; \n \
     grid-template-columns: 1fr 1fr 1fr 1fr; \n \
     gap: 0px 10px; \n \
