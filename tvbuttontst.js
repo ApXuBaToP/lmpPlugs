@@ -106,4 +106,4 @@
 
   Lampa.Listener.follow('activity', plugTVkeys);
   
-  })();
+  }})();
