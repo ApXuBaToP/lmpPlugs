@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-  if (Lampa.Platform.tv()){
+  if (!Lampa.Platform.screen("mobile")){
   
   function log() {
           console.log.apply(console.log, arguments);
