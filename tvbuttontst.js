@@ -2,10 +2,11 @@
    'use strict';
    if (!Lampa.Platform.screen("mobile")) {
 
-       function log() {
-           console.log.apply(console.log, arguments);
-       }
-       log('TVkeys', 'TVkeys keys 001 loaded');
+    function log(lgs) {
+        var text = lgs;
+        console.log.apply(console.log, ['lmpPlugs', '[TvColorKeys]: ' + lgs])
+    }
+       log('TVkeys keys loaded');
 
        var htmlx = '<div> \n \
     <div class="simple-button simple-button--filter selector filter--home"> \n \
@@ -58,11 +59,11 @@
        var styleSheet = document.createElement("style");
        styleSheet.textContent = styles;
        document.head.appendChild(styleSheet);
+       log('Templates patched');
 
        var clCodes = ["ColorF0Red", "ColorF1Green", "ColorF2Yellow", "ColorF3Blue"];
        var act_tfilter = '';
        function plugTVkeys(e) {
-           log('TVkeys', e);
            if (e.type == 'start') {
                var tfilter = document.getElementsByClassName("torrent-filter")[0] || '';
                if (tfilter) {
@@ -107,7 +108,6 @@
                return
            }
            var tpanel = act_tfilter.children;
-           //var opt = clCodes.indexOf(e.key)+1;
            if (tpanel[opt].firstChild.checkVisibility()) {
                Lampa.Utils.trigger(tpanel[opt].firstChild, 'hover:enter')
            }
@@ -116,13 +116,14 @@
        function reBindRight(e) {
            if (e.name == 'content') {
                Lampa.Controller.enabled().controller.right = function right() {
-                   if (Navigator.canmove('right')) Navigator.move('right');
+                   if (Navigator.canmove('right')) {Navigator.move('right'); log('reBindRigth')}
                    else Lampa.Controller.long();
                };
            }
        }
 
        Lampa.Listener.follow('activity', plugTVkeys);
+       log('Listener started')
 
    }
 })();

@@ -2,7 +2,7 @@
   "use strict";
   function log(lgs) {
     var text = lgs;
-    console.log.apply(console.log, ['[lmpPlugs]', '[builtinPlFix]: ' + lgs])
+    console.log.apply(console.log, ['lmpPlugs', '[builtinPlFix]: ' + lgs])
 }
   log('Plugin loaded');
   Lampa.Controller._controllers = {};
