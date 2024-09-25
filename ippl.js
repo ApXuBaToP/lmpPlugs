@@ -14,7 +14,8 @@
       //log(ev.name + ' intercepted');
       var lp = Lampa.Controller.enabled().controller
       if (!lp.patched) {
-          lp.up = function() {Lampa.PlayerPanel.listener.send('playlist')}
+          var _up = lp.up;
+          lp.up = function() {if (!Lampa.PlayerPanel.visibleStatus()) Lampa.PlayerPanel.listener.send('playlist'); else _up()}
           lp.patched = true
       }
   }
