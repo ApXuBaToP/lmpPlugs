@@ -2,7 +2,7 @@
    'use strict';
 
    // Early return if conditions are not met
-   if (!Lampa.Platform.tv() && !Lampa.Storage.get('apx_debug')) return;
+   if (!Lampa.Storage.get('navigation_type', {}) == 'remote' && !Lampa.Storage.get('apx_debug')) return;
 
    // Logging utility
    function log(message) {
