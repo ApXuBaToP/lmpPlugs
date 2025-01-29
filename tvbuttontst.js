@@ -1,6 +1,6 @@
 (function() {
    'use strict';
-   if (!Lampa.Platform.screen("mobile")) {
+   if (Lampa.Platform.screen('tv') || Lampa.Storage.get('apx_debug')) {
 
     function log(lgs) {
         var text = lgs;
