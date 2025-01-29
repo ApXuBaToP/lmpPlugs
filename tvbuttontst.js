@@ -71,9 +71,8 @@
                        if (tfilter.children.length > 4) {
                            tfilter.removeChild(tfilter.firstChild)
                        }
-                       tfilter.children[0].on('hover:enter', () => Lampa.Activity.push({
-                           'component': 'main'
-                       }));
+                       tfilter.children[0].on('hover:enter', () => Lampa.Activity.last()
+                    );
                        wrapEach(tfilter);
                        tfilter.addClass('TVbuttons');
                        document.addEventListener("keyup", listenTVkeys);
