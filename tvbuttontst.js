@@ -1,6 +1,6 @@
 (function() {
    'use strict';
-   if (Lampa.Platform.screen('tv') || Lampa.Storage.get('apx_debug')) {
+   if (Lampa.Platform.tv() || Lampa.Storage.get('apx_debug')) {
 
     function log(lgs) {
         var text = lgs;
